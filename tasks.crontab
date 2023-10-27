@@ -1,1 +1,6 @@
-* * * * * cd /usr/src/app && npm run exec unknown-task
+0 0 * * * cd /usr/src/app && npm run exec capture-spot-stats
+0 0 * * * cd /usr/src/app && npm run exec monthly-bonus-credits
+*/15 * * * * cd /usr/src/app && npm run exec unread-direct-messages
+*/15 * * * * cd /usr/src/app && npm run exec unread-project-messages
+*/15 * * * * cd /usr/src/app && npm run exec needs-prompt-email
+*/15 * * * * cd /usr/src/app && npm run exec portfolio-prompt-email
