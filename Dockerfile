@@ -44,10 +44,22 @@ FROM node:20-alpine As production
 
 WORKDIR /usr/src/app
 
+RUN npm install -g npm
+
+RUN apk add --no-cache tzdata
+
+ENV TZ=Europe/London
+
+RUN cp /usr/share/zoneinfo/Europe/London /etc/localtime
+
 COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
+
 COPY --chown=node:node --from=build /usr/src/app/dist ./dist
+
 COPY --chown=node:node --from=build /usr/src/app/package.json ./package.json
+
 COPY ./tasks.crontab /etc/crontabs/root
+
 RUN apk add --update busybox-suid
 
 CMD crond -f
